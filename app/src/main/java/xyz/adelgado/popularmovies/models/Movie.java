@@ -8,16 +8,16 @@ public class Movie {
 	private String id;
 	private String title;
 	private String overview;
-	private String releaseDate;
+	private String releaseYear;
 	private Double voteAverage;
 	private String posterPath;
 	private String backdropPath;
 
-	public Movie(String id, String title, String overview, String releaseDate, Double voteAverage, String posterPath, String backdropPath) {
+	public Movie(String id, String title, String overview, String releaseYear, Double voteAverage, String posterPath, String backdropPath) {
 		this.id = id;
 		this.title = title;
 		this.overview = overview;
-		this.releaseDate = releaseDate;
+		this.releaseYear = releaseYear;
 		this.voteAverage = voteAverage;
 		this.posterPath = posterPath;
 		this.backdropPath = backdropPath;
@@ -36,8 +36,8 @@ public class Movie {
 		return overview;
 	}
 
-	public String getReleaseDate() {
-		return releaseDate;
+	public String getReleaseYear() {
+		return releaseYear;
 	}
 
 	public Double getVoteAverage() {
