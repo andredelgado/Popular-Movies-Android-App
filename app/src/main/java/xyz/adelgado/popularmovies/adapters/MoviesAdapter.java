@@ -3,7 +3,6 @@ package xyz.adelgado.popularmovies.adapters;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +24,8 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
 
 	private static final String TAG = MoviesAdapter.class.getSimpleName();
 
+	private static final String MOVIE_EXTRAS_PLACEHOLDER = "movie";
+
 	private List<Movie> mMoviesList;
 	private final Picasso imageLoader;
 	private final Context context;
@@ -38,7 +39,6 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
 
 	public void addData(ArrayList<Movie> movies) {
 		mMoviesList = movies;
-		Log.d(TAG, "ItemCount: " + mMoviesList.size());
 		notifyDataSetChanged();
 	}
 
@@ -63,7 +63,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
 			@Override
 			public void onClick(View v) {
 				Intent intent = new Intent(context, DetailsActivity.class);
-				intent.putExtra("movie", movie);
+				intent.putExtra(MOVIE_EXTRAS_PLACEHOLDER, movie);
 				context.startActivity(intent);
 			}
 		});

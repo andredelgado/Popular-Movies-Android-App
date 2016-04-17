@@ -9,9 +9,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
+
 import xyz.adelgado.popularmovies.R;
 import xyz.adelgado.popularmovies.adapters.MoviesAdapter;
 import xyz.adelgado.popularmovies.api.FetchMovies;
+import xyz.adelgado.popularmovies.models.Movie;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -30,7 +33,7 @@ public class MainActivityFragment extends Fragment {
 
 	@Override
 	public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-		MoviesAdapter moviesAdapter = new MoviesAdapter(getContext());
+		final MoviesAdapter moviesAdapter = new MoviesAdapter(getContext());
 		RecyclerView moviesList = (RecyclerView) view.findViewById(R.id.movies_recyclerview);
 
 		moviesList.setHasFixedSize(true);
@@ -38,7 +41,15 @@ public class MainActivityFragment extends Fragment {
 				new GridLayoutManager(getContext(), 2)
 		);
 		moviesList.setAdapter(moviesAdapter);
-		FetchMovies fetchMovies = new FetchMovies(moviesAdapter);
+
+		FetchMovies fetchMovies = new FetchMovies(new FetchMovies.OnFetchMoviesCompleted() {
+			@Override
+			public void onFetchMoviesCompleted(ArrayList<Movie> response) {
+				moviesAdapter.clear();
+				moviesAdapter.addData(response);
+			}
+		});
+
 		fetchMovies.execute("popular");
 	}
 }

@@ -29,15 +29,17 @@ public class DetailsActivityFragment extends Fragment {
 		View view = inflater.inflate(R.layout.fragment_details, container, false);
 
 		ImageView imageView = (ImageView) view.findViewById(R.id.poster_display);
+		TextView titleDisplay = (TextView) view.findViewById(R.id.title_display);
 		TextView yearDisplay = (TextView) view.findViewById(R.id.year_display);
 		TextView rateDisplay = (TextView) view.findViewById(R.id.rate_display);
-		TextView overviewDisplay = (TextView) view.findViewById(R.id.overview_textview);
+		TextView overviewDisplay = (TextView) view.findViewById(R.id.overview_display);
 
 		mMovie = getActivity().getIntent().getParcelableExtra("movie");
 
 		Picasso.with(getContext()).load(mMovie.getPosterPath()).fit().into(imageView);
+		titleDisplay.setText(mMovie.getTitle());
 		yearDisplay.setText(mMovie.getReleaseYear());
-		rateDisplay.setText(String.valueOf(mMovie.getVoteAverage()) + "/10");
+		rateDisplay.setText(String.format("%s/10", String.valueOf(mMovie.getVoteAverage())));
 		overviewDisplay.setText(mMovie.getOverview());
 		return view;
 	}

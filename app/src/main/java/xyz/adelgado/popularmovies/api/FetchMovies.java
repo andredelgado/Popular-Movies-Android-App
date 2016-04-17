@@ -13,7 +13,6 @@ import java.net.URL;
 import java.util.ArrayList;
 
 import xyz.adelgado.popularmovies.BuildConfig;
-import xyz.adelgado.popularmovies.adapters.MoviesAdapter;
 import xyz.adelgado.popularmovies.models.Movie;
 
 /**
@@ -23,17 +22,29 @@ public class FetchMovies extends AsyncTask<String, Void, ArrayList<Movie>> {
 
 	private static final String TAG = FetchMovies.class.getSimpleName();
 
-	private MoviesAdapter moviesAdapter;
+	private static final String API_KEY_PARAM = "api_key";
+	private static final String BASE_URL = "http://api.themoviedb.org/3/movie/";
 
-	public FetchMovies(MoviesAdapter moviesAdapter) {
-		this.moviesAdapter = moviesAdapter;
+	private static final String POPULAR_MOVIES = "popular";
+	private static final String TOP_RATED_MOVIES = "top_rated";
+
+	private static final String REQUEST_METHOD = "GET";
+
+	private OnFetchMoviesCompleted listener;
+
+	public interface OnFetchMoviesCompleted {
+		void onFetchMoviesCompleted(ArrayList<Movie> response);
+	}
+
+	public FetchMovies(OnFetchMoviesCompleted listener) {
+		this.listener = listener;
 	}
 
 	@Override
 	protected ArrayList<Movie> doInBackground(String... params) {
-		final String ACTION;
+		final String action;
 
-		if(params[0].equals("popular") || params[0].equals("top_rated")) ACTION = params[0];
+		if(params[0].equals(POPULAR_MOVIES) || params[0].equals(TOP_RATED_MOVIES)) action = params[0];
 		else return null;
 
 		String fetchedMoviesStr = null;
@@ -42,18 +53,16 @@ public class FetchMovies extends AsyncTask<String, Void, ArrayList<Movie>> {
 		StringBuilder result = new StringBuilder();
 
 		try {
-			final String FORECAST_BASE_URL =
-					"http://api.themoviedb.org/3/movie/" + ACTION;
-			final String API_KEY_PARAM = "api_key";
+			final String FINAL_URL = BASE_URL + action;
 
-			Uri builtUri = Uri.parse(FORECAST_BASE_URL).buildUpon()
+			Uri builtUri = Uri.parse(FINAL_URL).buildUpon()
 					.appendQueryParameter(API_KEY_PARAM, BuildConfig.THE_MOVIE_DATABASE_API_KEY)
 					.build();
 
 			URL url = new URL(builtUri.toString());
 
 			urlConnection = (HttpURLConnection) url.openConnection();
-			urlConnection.setRequestMethod("GET");
+			urlConnection.setRequestMethod(REQUEST_METHOD);
 			urlConnection.connect();
 
 			InputStream inputStream = urlConnection.getInputStream();
@@ -85,6 +94,6 @@ public class FetchMovies extends AsyncTask<String, Void, ArrayList<Movie>> {
 
 	@Override
 	protected void onPostExecute(ArrayList<Movie> movies) {
-		moviesAdapter.addData(movies);
+		listener.onFetchMoviesCompleted(movies);
 	}
 }

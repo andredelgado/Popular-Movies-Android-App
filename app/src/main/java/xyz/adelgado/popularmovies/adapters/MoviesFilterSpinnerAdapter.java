@@ -1,11 +1,9 @@
 package xyz.adelgado.popularmovies.adapters;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
@@ -17,7 +15,7 @@ import xyz.adelgado.popularmovies.R;
 /**
  * Created by andredelgado on 16/04/16.
  */
-public class MoviesFilterSpinnerAdapter extends BaseAdapter implements AdapterView.OnItemSelectedListener {
+public class MoviesFilterSpinnerAdapter extends BaseAdapter {
 
 	LayoutInflater inflater;
 
@@ -81,15 +79,5 @@ public class MoviesFilterSpinnerAdapter extends BaseAdapter implements AdapterVi
 
 	private String getTitle(int position) {
 		return position >= 0 && position < mItems.size() ? mItems.get(position) : "";
-	}
-
-	@Override
-	public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-		Log.d("asd", "asd");
-	}
-
-	@Override
-	public void onNothingSelected(AdapterView<?> parent) {
-
 	}
 }

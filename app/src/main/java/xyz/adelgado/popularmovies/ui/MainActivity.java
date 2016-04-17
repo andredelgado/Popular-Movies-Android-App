@@ -7,6 +7,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Spinner;
 
 import java.util.ArrayList;
@@ -40,5 +41,18 @@ public class MainActivity extends AppCompatActivity {
 
 		Spinner spinner = (Spinner) spinnerContainer.findViewById(R.id.toolbar_spinner);
 		spinner.setAdapter(spinnerAdapter);
+
+		spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+			@Override
+			public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+
+			}
+
+			@Override
+			public void onNothingSelected(AdapterView<?> parentView) {
+				// your code here
+			}
+
+		});
 	}
 }
