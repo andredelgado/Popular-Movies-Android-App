@@ -1,14 +1,22 @@
 package xyz.adelgado.popularmovies.ui;
 
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Spinner;
+
+import java.util.ArrayList;
 
 import xyz.adelgado.popularmovies.R;
+import xyz.adelgado.popularmovies.adapters.MoviesFilterSpinnerAdapter;
 
 public class MainActivity extends AppCompatActivity {
+
+	private static final String TAG = MainActivity.class.getSimpleName();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -16,27 +24,21 @@ public class MainActivity extends AppCompatActivity {
 		setContentView(R.layout.activity_main);
 		Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 		setSupportActionBar(toolbar);
-	}
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.menu_main, menu);
-		return true;
-	}
+		final ArrayList<String> list = new ArrayList<>();
+		list.add("Popular Movies");
+		list.add("Top Movies");
 
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		// Handle action bar item clicks here. The action bar will
-		// automatically handle clicks on the Home/Up button, so long
-		// as you specify a parent activity in AndroidManifest.xml.
-		int id = item.getItemId();
+		View spinnerContainer = LayoutInflater.from(this).inflate(R.layout.toolbar_spinner,
+				toolbar, false);
+		ActionBar.LayoutParams lp = new ActionBar.LayoutParams(
+				ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+		toolbar.addView(spinnerContainer, lp);
 
-		//noinspection SimplifiableIfStatement
-		if(id == R.id.action_settings) {
-			return true;
-		}
+		MoviesFilterSpinnerAdapter spinnerAdapter = new MoviesFilterSpinnerAdapter(getApplicationContext());
+		spinnerAdapter.addItems(list);
 
-		return super.onOptionsItemSelected(item);
+		Spinner spinner = (Spinner) spinnerContainer.findViewById(R.id.toolbar_spinner);
+		spinner.setAdapter(spinnerAdapter);
 	}
 }

@@ -12,6 +12,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
+import xyz.adelgado.popularmovies.BuildConfig;
 import xyz.adelgado.popularmovies.adapters.MoviesAdapter;
 import xyz.adelgado.popularmovies.models.Movie;
 
@@ -32,11 +33,8 @@ public class FetchMovies extends AsyncTask<String, Void, ArrayList<Movie>> {
 	protected ArrayList<Movie> doInBackground(String... params) {
 		final String ACTION;
 
-		if(params[0].equals("popular") || params[0].equals("top_rated")) {
-			ACTION = params[0];
-		} else {
-			return null;
-		}
+		if(params[0].equals("popular") || params[0].equals("top_rated")) ACTION = params[0];
+		else return null;
 
 		String fetchedMoviesStr = null;
 		HttpURLConnection urlConnection = null;
@@ -49,7 +47,7 @@ public class FetchMovies extends AsyncTask<String, Void, ArrayList<Movie>> {
 			final String API_KEY_PARAM = "api_key";
 
 			Uri builtUri = Uri.parse(FORECAST_BASE_URL).buildUpon()
-					.appendQueryParameter(API_KEY_PARAM, "KEY")
+					.appendQueryParameter(API_KEY_PARAM, BuildConfig.THE_MOVIE_DATABASE_API_KEY)
 					.build();
 
 			URL url = new URL(builtUri.toString());
@@ -59,24 +57,19 @@ public class FetchMovies extends AsyncTask<String, Void, ArrayList<Movie>> {
 			urlConnection.connect();
 
 			InputStream inputStream = urlConnection.getInputStream();
-			if(inputStream == null) {
-				return null;
-			}
+			if(inputStream == null) return null;
 
 			reader = new BufferedReader(new InputStreamReader(inputStream));
 
 			String line;
-			while((line = reader.readLine()) != null) {
-				result.append(line);
-			}
+			while((line = reader.readLine()) != null) result.append(line);
+
 			fetchedMoviesStr = result.toString();
 
 		} catch(IOException e) {
-			e.printStackTrace();
+			Log.e(TAG, e.getMessage());
 		} finally {
-			if (urlConnection != null) {
-				urlConnection.disconnect();
-			}
+			if (urlConnection != null) urlConnection.disconnect();
 			if (reader != null) {
 				try {
 					reader.close();

@@ -1,5 +1,7 @@
 package xyz.adelgado.popularmovies.api;
 
+import android.util.Log;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -26,11 +28,11 @@ public class DataParser {
 				String id = result.getString("id");
 				String title = result.getString("original_title");
 				String overview = result.getString("overview");
-				String releaseYear = result.getString("release_date").substring(0,3);
+				String releaseYear = result.getString("release_date").substring(0,4);
 				Double voteAverage = result.getDouble("vote_average");
 				String posterPath = "http://image.tmdb.org/t/p/w500" + result.getString("poster_path");
-				String backdropPath = result.getString("backdrop_path");
-
+				String backdropPath = "http://image.tmdb.org/t/p/w780" + result.getString("backdrop_path");
+				Log.d("as", backdropPath);
 				movies.add(new Movie(id, title, overview, releaseYear, voteAverage, posterPath, backdropPath));
 			}
 
