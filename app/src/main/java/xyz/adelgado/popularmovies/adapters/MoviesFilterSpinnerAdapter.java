@@ -25,14 +25,6 @@ public class MoviesFilterSpinnerAdapter extends BaseAdapter {
 		inflater= (LayoutInflater) context.getSystemService( Context.LAYOUT_INFLATER_SERVICE);
 	}
 
-	public void clear() {
-		mItems.clear();
-	}
-
-	public void addItem(String item) {
-		mItems.add(item);
-	}
-
 	public void addItems(List<String> items) {
 		mItems.addAll(items);
 	}

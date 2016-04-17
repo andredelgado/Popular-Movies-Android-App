@@ -21,6 +21,9 @@ import xyz.adelgado.popularmovies.models.Movie;
  */
 public class MainActivityFragment extends Fragment {
 
+	private FetchMovies fetchMovies;
+	private MoviesAdapter moviesAdapter;
+
 	public MainActivityFragment() {
 	}
 
@@ -33,23 +36,27 @@ public class MainActivityFragment extends Fragment {
 
 	@Override
 	public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-		final MoviesAdapter moviesAdapter = new MoviesAdapter(getContext());
+		moviesAdapter = new MoviesAdapter(getContext());
 		RecyclerView moviesList = (RecyclerView) view.findViewById(R.id.movies_recyclerview);
 
 		moviesList.setHasFixedSize(true);
-		moviesList.setLayoutManager(
-				new GridLayoutManager(getContext(), 2)
-		);
-		moviesList.setAdapter(moviesAdapter);
 
-		FetchMovies fetchMovies = new FetchMovies(new FetchMovies.OnFetchMoviesCompleted() {
+		if(getActivity().getResources().getConfiguration().orientation == 1) {
+			moviesList.setLayoutManager(new GridLayoutManager(getContext(), 2));
+		} else if (getActivity().getResources().getConfiguration().orientation == 2) {
+			moviesList.setLayoutManager(new GridLayoutManager(getContext(), 4));
+		}
+		moviesList.setAdapter(moviesAdapter);
+	}
+
+	public void updateMovies(String action) {
+		fetchMovies = new FetchMovies(new FetchMovies.OnFetchMoviesCompleted() {
 			@Override
 			public void onFetchMoviesCompleted(ArrayList<Movie> response) {
 				moviesAdapter.clear();
 				moviesAdapter.addData(response);
 			}
 		});
-
-		fetchMovies.execute("popular");
+		fetchMovies.execute(action);
 	}
 }

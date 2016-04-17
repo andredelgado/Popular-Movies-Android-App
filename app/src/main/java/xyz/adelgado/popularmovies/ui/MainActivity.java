@@ -1,6 +1,7 @@
 package xyz.adelgado.popularmovies.ui;
 
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -26,6 +27,9 @@ public class MainActivity extends AppCompatActivity {
 		Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 		setSupportActionBar(toolbar);
 
+		FragmentManager fm = getSupportFragmentManager();
+		final MainActivityFragment activityFragment = (MainActivityFragment) fm.findFragmentById(R.id.fragment_main);
+
 		final ArrayList<String> list = new ArrayList<>();
 		list.add("Popular Movies");
 		list.add("Top Movies");
@@ -45,12 +49,15 @@ public class MainActivity extends AppCompatActivity {
 		spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 			@Override
 			public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-
+				if(position == 0) {
+					activityFragment.updateMovies("popular");
+				} else if(position == 1) {
+					activityFragment.updateMovies("top_rated");
+				}
 			}
 
 			@Override
 			public void onNothingSelected(AdapterView<?> parentView) {
-				// your code here
 			}
 
 		});
