@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.DetailsActivityFragment"
+    tools:context=".ui.DetailsFragment"
     tools:showIn="@layout/activity_details"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
@@ -69,7 +69,7 @@
             android:paddingTop="@dimen/activity_vertical_margin">
 
             <TextView
-                android:text="Synopsis"
+                android:text="@string/synopsis"
                 android:textColor="@color/colorAccent"
                 android:textStyle="bold"
                 android:layout_width="match_parent"

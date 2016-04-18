@@ -22,7 +22,7 @@ public class DetailsActivity extends AppCompatActivity {
 		ImageView backdropDisplay = (ImageView) findViewById(R.id.backdrop_display);
 
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-		Movie movie = getIntent().getParcelableExtra("movie");
+		Movie movie = getIntent().getParcelableExtra(getString(R.string.movie_extras_placeholder));
 		getSupportActionBar().setTitle(movie.getTitle());
 		Picasso.with(getApplicationContext()).load(movie.getBackdropPath()).fit().into(backdropDisplay);
 	}

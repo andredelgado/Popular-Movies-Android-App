@@ -1,5 +1,6 @@
 package xyz.adelgado.popularmovies.api;
 
+import android.content.Context;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.util.Log;
@@ -13,6 +14,7 @@ import java.net.URL;
 import java.util.ArrayList;
 
 import xyz.adelgado.popularmovies.BuildConfig;
+import xyz.adelgado.popularmovies.R;
 import xyz.adelgado.popularmovies.models.Movie;
 
 /**
@@ -25,18 +27,17 @@ public class FetchMovies extends AsyncTask<String, Void, ArrayList<Movie>> {
 	private static final String API_KEY_PARAM = "api_key";
 	private static final String BASE_URL = "http://api.themoviedb.org/3/movie/";
 
-	private static final String POPULAR_MOVIES = "popular";
-	private static final String TOP_RATED_MOVIES = "top_rated";
-
 	private static final String REQUEST_METHOD = "GET";
 
+	private Context mContext;
 	private OnFetchMoviesCompleted listener;
 
 	public interface OnFetchMoviesCompleted {
 		void onFetchMoviesCompleted(ArrayList<Movie> response);
 	}
 
-	public FetchMovies(OnFetchMoviesCompleted listener) {
+	public FetchMovies(Context context, OnFetchMoviesCompleted listener) {
+		this.mContext = context;
 		this.listener = listener;
 	}
 
@@ -44,7 +45,8 @@ public class FetchMovies extends AsyncTask<String, Void, ArrayList<Movie>> {
 	protected ArrayList<Movie> doInBackground(String... params) {
 		final String action;
 
-		if(params[0].equals(POPULAR_MOVIES) || params[0].equals(TOP_RATED_MOVIES)) action = params[0];
+		if(params[0].equals(mContext.getString(R.string.popular_movies_action_tag)) || params[0].equals(mContext.getString(R.string.top_rated_action_tag)))
+			action = params[0];
 		else return null;
 
 		String fetchedMoviesStr = null;
@@ -88,7 +90,7 @@ public class FetchMovies extends AsyncTask<String, Void, ArrayList<Movie>> {
 			}
 		}
 
-		return new DataParser().parseMovies(fetchedMoviesStr);
+		return new MoviesDataParser().parseMovies(fetchedMoviesStr);
 	}
 
 	@Override

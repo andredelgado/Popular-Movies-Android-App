@@ -16,11 +16,11 @@ import xyz.adelgado.popularmovies.models.Movie;
 /**
  * A placeholder fragment containing a simple view.
  */
-public class DetailsActivityFragment extends Fragment {
+public class DetailsFragment extends Fragment {
 
 	Movie mMovie;
 
-	public DetailsActivityFragment() {
+	public DetailsFragment() {
 	}
 
 	@Override
@@ -34,7 +34,7 @@ public class DetailsActivityFragment extends Fragment {
 		TextView rateDisplay = (TextView) view.findViewById(R.id.rate_display);
 		TextView overviewDisplay = (TextView) view.findViewById(R.id.overview_display);
 
-		mMovie = getActivity().getIntent().getParcelableExtra("movie");
+		mMovie = getActivity().getIntent().getParcelableExtra(getString(R.string.movie_extras_placeholder));
 
 		Picasso.with(getContext()).load(mMovie.getPosterPath()).fit().into(imageView);
 		titleDisplay.setText(mMovie.getTitle());

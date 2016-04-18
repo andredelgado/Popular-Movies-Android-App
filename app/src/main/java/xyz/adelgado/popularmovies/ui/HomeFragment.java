@@ -19,12 +19,11 @@ import xyz.adelgado.popularmovies.models.Movie;
 /**
  * A placeholder fragment containing a simple view.
  */
-public class MainActivityFragment extends Fragment {
+public class HomeFragment extends Fragment {
 
-	private FetchMovies fetchMovies;
 	private MoviesAdapter moviesAdapter;
 
-	public MainActivityFragment() {
+	public HomeFragment() {
 	}
 
 	@Override
@@ -50,7 +49,7 @@ public class MainActivityFragment extends Fragment {
 	}
 
 	public void updateMovies(String action) {
-		fetchMovies = new FetchMovies(new FetchMovies.OnFetchMoviesCompleted() {
+		FetchMovies fetchMovies = new FetchMovies(getContext(), new FetchMovies.OnFetchMoviesCompleted() {
 			@Override
 			public void onFetchMoviesCompleted(ArrayList<Movie> response) {
 				moviesAdapter.clear();

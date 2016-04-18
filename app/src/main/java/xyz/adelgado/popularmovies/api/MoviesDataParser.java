@@ -13,9 +13,9 @@ import xyz.adelgado.popularmovies.models.Movie;
 /**
  * Created by andredelgado on 16/04/16.
  */
-public class DataParser {
+public class MoviesDataParser {
 
-	private static final String TAG = DataParser.class.getSimpleName();
+	private static final String TAG = MoviesDataParser.class.getSimpleName();
 
 	private static final String ID_FIELD = "id";
 	private static final String TITLE_FIELD = "original_title";

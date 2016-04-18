@@ -22,10 +22,6 @@ import xyz.adelgado.popularmovies.ui.DetailsActivity;
  */
 public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder> {
 
-	private static final String TAG = MoviesAdapter.class.getSimpleName();
-
-	private static final String MOVIE_EXTRAS_PLACEHOLDER = "movie";
-
 	private List<Movie> mMoviesList;
 	private final Picasso imageLoader;
 	private final Context context;
@@ -63,7 +59,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
 			@Override
 			public void onClick(View v) {
 				Intent intent = new Intent(context, DetailsActivity.class);
-				intent.putExtra(MOVIE_EXTRAS_PLACEHOLDER, movie);
+				intent.putExtra(context.getString(R.string.movie_extras_placeholder), movie);
 				context.startActivity(intent);
 			}
 		});

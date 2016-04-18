@@ -15,13 +15,15 @@ import xyz.adelgado.popularmovies.R;
 /**
  * Created by andredelgado on 16/04/16.
  */
-public class MoviesFilterSpinnerAdapter extends BaseAdapter {
+public class MoviesFilterAdapter extends BaseAdapter {
 
 	LayoutInflater inflater;
 
 	private List<String> mItems = new ArrayList<>();
+	private Context mContext;
 
-	public MoviesFilterSpinnerAdapter(Context context) {
+	public MoviesFilterAdapter(Context context) {
+		this.mContext = context;
 		inflater= (LayoutInflater) context.getSystemService( Context.LAYOUT_INFLATER_SERVICE);
 	}
 
@@ -46,9 +48,9 @@ public class MoviesFilterSpinnerAdapter extends BaseAdapter {
 
 	@Override
 	public View getDropDownView(final int position, View view, ViewGroup parent) {
-		if (view == null || !view.getTag().toString().equals("DROPDOWN")) {
+		if (view == null || !view.getTag().toString().equals(mContext.getString(R.string.dropdown_tag))) {
 			view = inflater.inflate(R.layout.toolbar_spinner_item_dropdown, parent, false);
-			view.setTag("DROPDOWN");
+			view.setTag(mContext.getString(R.string.dropdown_tag));
 		}
 
 		TextView textView = (TextView) view.findViewById(android.R.id.text1);
@@ -59,10 +61,10 @@ public class MoviesFilterSpinnerAdapter extends BaseAdapter {
 
 	@Override
 	public View getView(final int position, View view, ViewGroup parent) {
-		if (view == null || !view.getTag().toString().equals("NON_DROPDOWN")) {
+		if (view == null || !view.getTag().toString().equals(mContext.getString(R.string.non_dropdown_tag))) {
 			view = inflater.inflate(R.layout.
 					toolbar_spinner_item_actionbar, parent, false);
-			view.setTag("NON_DROPDOWN");
+			view.setTag(mContext.getString(R.string.non_dropdown_tag));
 		}
 		TextView textView = (TextView) view.findViewById(android.R.id.text1);
 		textView.setText(getTitle(position));
