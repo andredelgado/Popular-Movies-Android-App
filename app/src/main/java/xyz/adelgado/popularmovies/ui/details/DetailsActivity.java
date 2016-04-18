@@ -1,4 +1,4 @@
-package xyz.adelgado.popularmovies.ui;
+package xyz.adelgado.popularmovies.ui.details;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -6,7 +6,7 @@ import android.support.v7.widget.Toolbar;
 import android.widget.ImageView;
 import com.squareup.picasso.Picasso;
 import xyz.adelgado.popularmovies.R;
-import xyz.adelgado.popularmovies.models.Movie;
+import xyz.adelgado.popularmovies.data.models.Movie;
 
 public class DetailsActivity extends AppCompatActivity {
 

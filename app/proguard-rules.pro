@@ -44,5 +44,5 @@
 -keep class sun.misc.Unsafe { *; }
 #-keep class com.google.gson.stream.** { *; }
 
-# Application classes that will be serialized/deserialized over Gson
--keep class pt.stratio.mapicoimbra.data.models.** { *; }
+# Classes that will be serialized/deserialized over Gson
+-keep class xyz.adelgado.popularmovies.data.models.** { *; }

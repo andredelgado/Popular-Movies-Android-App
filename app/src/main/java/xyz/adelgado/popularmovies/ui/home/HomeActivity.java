@@ -1,4 +1,4 @@
-package xyz.adelgado.popularmovies.ui;
+package xyz.adelgado.popularmovies.ui.home;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
@@ -12,7 +12,6 @@ import android.widget.AdapterView;
 import android.widget.Spinner;
 import java.util.ArrayList;
 import xyz.adelgado.popularmovies.R;
-import xyz.adelgado.popularmovies.adapters.MoviesFilterAdapter;
 
 public class HomeActivity extends AppCompatActivity {
 

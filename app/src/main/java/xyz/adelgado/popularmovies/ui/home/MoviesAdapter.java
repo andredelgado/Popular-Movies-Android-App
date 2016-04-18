@@ -1,4 +1,4 @@
-package xyz.adelgado.popularmovies.adapters;
+package xyz.adelgado.popularmovies.ui.home;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,8 +11,8 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.List;
 import xyz.adelgado.popularmovies.R;
-import xyz.adelgado.popularmovies.models.Movie;
-import xyz.adelgado.popularmovies.ui.DetailsActivity;
+import xyz.adelgado.popularmovies.data.models.Movie;
+import xyz.adelgado.popularmovies.ui.details.DetailsActivity;
 
 /**
  * Created by andredelgado on 15/04/16.

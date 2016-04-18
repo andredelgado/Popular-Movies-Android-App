@@ -1,11 +1,11 @@
-package xyz.adelgado.popularmovies.api;
+package xyz.adelgado.popularmovies.data.api;
 
 import android.util.Log;
 import java.util.ArrayList;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import xyz.adelgado.popularmovies.models.Movie;
+import xyz.adelgado.popularmovies.data.models.Movie;
 
 /**
  * Created by andredelgado on 16/04/16.

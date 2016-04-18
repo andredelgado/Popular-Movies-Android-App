@@ -1,4 +1,4 @@
-package xyz.adelgado.popularmovies.ui;
+package xyz.adelgado.popularmovies.ui.home;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -11,9 +11,8 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 import java.util.ArrayList;
 import xyz.adelgado.popularmovies.R;
-import xyz.adelgado.popularmovies.adapters.MoviesAdapter;
-import xyz.adelgado.popularmovies.api.FetchMovies;
-import xyz.adelgado.popularmovies.models.Movie;
+import xyz.adelgado.popularmovies.data.api.FetchMovies;
+import xyz.adelgado.popularmovies.data.models.Movie;
 
 /**
  * A placeholder fragment containing a simple view.

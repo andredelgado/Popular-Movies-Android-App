@@ -1,4 +1,4 @@
-package xyz.adelgado.popularmovies.models;
+package xyz.adelgado.popularmovies.data.models;
 
 import android.os.Parcel;
 import android.os.Parcelable;

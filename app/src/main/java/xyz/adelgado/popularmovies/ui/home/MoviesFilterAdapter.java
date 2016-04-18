@@ -1,4 +1,4 @@
-package xyz.adelgado.popularmovies.adapters;
+package xyz.adelgado.popularmovies.ui.home;
 
 import android.content.Context;
 import android.view.LayoutInflater;

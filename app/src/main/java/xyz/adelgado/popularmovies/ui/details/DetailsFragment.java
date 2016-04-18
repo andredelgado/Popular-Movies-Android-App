@@ -1,4 +1,4 @@
-package xyz.adelgado.popularmovies.ui;
+package xyz.adelgado.popularmovies.ui.details;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 import xyz.adelgado.popularmovies.R;
-import xyz.adelgado.popularmovies.models.Movie;
+import xyz.adelgado.popularmovies.data.models.Movie;
 
 /**
  * A placeholder fragment containing a simple view.

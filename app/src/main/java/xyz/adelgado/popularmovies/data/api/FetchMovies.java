@@ -1,4 +1,4 @@
-package xyz.adelgado.popularmovies.api;
+package xyz.adelgado.popularmovies.data.api;
 
 import android.content.Context;
 import android.net.Uri;
@@ -13,7 +13,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import xyz.adelgado.popularmovies.BuildConfig;
 import xyz.adelgado.popularmovies.R;
-import xyz.adelgado.popularmovies.models.Movie;
+import xyz.adelgado.popularmovies.data.models.Movie;
 
 /**
  * Created by andredelgado on 15/04/16.
