@@ -83,12 +83,11 @@ public class FetchMovies extends AsyncTask<String, Void, ArrayList<Movie>> {
 				try {
 					reader.close();
 				} catch (final IOException e) {
-					e.printStackTrace();
+					Log.e(TAG, e.getMessage());
 				}
 			}
 		}
 
-		Log.d(TAG, fetchedMoviesStr);
 		return new DataParser().parseMovies(fetchedMoviesStr);
 	}
 

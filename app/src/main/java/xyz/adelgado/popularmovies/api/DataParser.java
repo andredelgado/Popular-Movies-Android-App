@@ -1,5 +1,7 @@
 package xyz.adelgado.popularmovies.api;
 
+import android.util.Log;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -12,6 +14,8 @@ import xyz.adelgado.popularmovies.models.Movie;
  * Created by andredelgado on 16/04/16.
  */
 public class DataParser {
+
+	private static final String TAG = DataParser.class.getSimpleName();
 
 	private static final String ID_FIELD = "id";
 	private static final String TITLE_FIELD = "original_title";
@@ -56,7 +60,7 @@ public class DataParser {
 			}
 
 		} catch(JSONException e) {
-			e.printStackTrace();
+			Log.d(TAG, e.getMessage());
 		}
 
 		return movies;
