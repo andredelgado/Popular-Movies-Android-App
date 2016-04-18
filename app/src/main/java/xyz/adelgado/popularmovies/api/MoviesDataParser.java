@@ -26,28 +26,32 @@ public class MoviesDataParser {
 
   public ArrayList<Movie> parseMovies(String moviesStr) {
 
-    ArrayList<Movie> movies = new ArrayList<>();
+    ArrayList<Movie> movies = null;
 
-    try {
-      JSONObject jsonData = new JSONObject(moviesStr);
-      JSONArray results = jsonData.getJSONArray("results");
+    if(moviesStr != null) {
+      movies = new ArrayList<>();
 
-      for (int i = 0; i < results.length(); i++) {
-        JSONObject result = results.getJSONObject(i);
+      try {
+        JSONObject jsonData = new JSONObject(moviesStr);
+        JSONArray results = jsonData.getJSONArray("results");
 
-        String id = result.getString(ID_FIELD);
-        String title = result.getString(TITLE_FIELD);
-        String overview = result.getString(OVERVIEW_FIELD);
-        String releaseYear = result.getString(RELEASE_DATE_FIELD).substring(0, 4);
-        Double voteAverage = result.getDouble(VOTE_AVERAGE_FIELD);
-        String posterPath = IMAGE_URL_SLUG + result.getString(POSTER_PATH_FIELD);
-        String backdropPath = IMAGE_URL_SLUG + result.getString(BACKDROP_PATH_FIELD);
+        for (int i = 0; i < results.length(); i++) {
+          JSONObject result = results.getJSONObject(i);
 
-        movies.add(
-            new Movie(id, title, overview, releaseYear, voteAverage, posterPath, backdropPath));
+          String id = result.getString(ID_FIELD);
+          String title = result.getString(TITLE_FIELD);
+          String overview = result.getString(OVERVIEW_FIELD);
+          String releaseYear = result.getString(RELEASE_DATE_FIELD).substring(0, 4);
+          Double voteAverage = result.getDouble(VOTE_AVERAGE_FIELD);
+          String posterPath = IMAGE_URL_SLUG + result.getString(POSTER_PATH_FIELD);
+          String backdropPath = IMAGE_URL_SLUG + result.getString(BACKDROP_PATH_FIELD);
+
+          movies.add(
+              new Movie(id, title, overview, releaseYear, voteAverage, posterPath, backdropPath));
+        }
+      } catch (JSONException e) {
+        Log.d(TAG, e.getMessage());
       }
-    } catch (JSONException e) {
-      Log.d(TAG, e.getMessage());
     }
 
     return movies;

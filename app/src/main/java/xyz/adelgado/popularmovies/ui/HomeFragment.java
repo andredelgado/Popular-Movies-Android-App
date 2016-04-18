@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 import java.util.ArrayList;
 import xyz.adelgado.popularmovies.R;
 import xyz.adelgado.popularmovies.adapters.MoviesAdapter;
@@ -48,8 +49,12 @@ public class HomeFragment extends Fragment {
     FetchMovies fetchMovies =
         new FetchMovies(getContext(), new FetchMovies.OnFetchMoviesCompleted() {
           @Override public void onFetchMoviesCompleted(ArrayList<Movie> response) {
-            moviesAdapter.clear();
-            moviesAdapter.addData(response);
+            if(response != null) {
+              moviesAdapter.clear();
+              moviesAdapter.addData(response);
+            } else {
+              Toast.makeText(getContext(), "No internet connection!", Toast.LENGTH_LONG).show();
+            }
           }
         });
     fetchMovies.execute(action);
