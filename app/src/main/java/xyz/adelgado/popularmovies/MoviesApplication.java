@@ -5,10 +5,8 @@ import com.karumi.dexter.Dexter;
 import timber.log.Timber;
 import xyz.adelgado.popularmovies.common.di.ApplicationComponent;
 import xyz.adelgado.popularmovies.common.di.ApplicationModule;
+import xyz.adelgado.popularmovies.common.di.DaggerApplicationComponent;
 
-/**
- * Created by andredelgado on 18/04/16.
- */
 public class MoviesApplication extends Application {
 
   public static final boolean DEBUG = BuildConfig.DEBUG;

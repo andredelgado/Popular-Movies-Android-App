@@ -9,6 +9,7 @@ import xyz.adelgado.popularmovies.MoviesApplication;
 import xyz.adelgado.popularmovies.common.di.ActivityComponent;
 import xyz.adelgado.popularmovies.common.di.ActivityModule;
 import xyz.adelgado.popularmovies.common.di.ApplicationComponent;
+import xyz.adelgado.popularmovies.common.di.DaggerActivityComponent;
 
 /**
  * Created by andredelgado on 18/04/16.

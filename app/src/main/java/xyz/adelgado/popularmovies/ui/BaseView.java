@@ -14,9 +14,6 @@ import xyz.adelgado.popularmovies.common.di.ApplicationComponent;
 import xyz.adelgado.popularmovies.common.di.ViewComponent;
 import xyz.adelgado.popularmovies.common.di.ViewModule;
 
-/**
- * Created by andredelgado on 18/04/16.
- */
 public abstract class BaseView extends FrameLayout {
 
   public BaseView(Context context) {
