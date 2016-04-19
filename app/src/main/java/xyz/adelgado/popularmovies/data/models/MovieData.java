@@ -9,7 +9,7 @@ import java.util.List;
 public class MovieData {
 
   public Integer page;
-  public List<MovieDetail> movieDetails = new ArrayList<MovieDetail>();
+  public List<MovieDetail> movieDetails = new ArrayList<>();
   public Integer totalResults;
   public Integer totalPages;
 }
