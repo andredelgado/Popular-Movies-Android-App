@@ -8,11 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
-import java.util.ArrayList;
 import xyz.adelgado.popularmovies.R;
-import xyz.adelgado.popularmovies.data.api.FetchMovies;
-import xyz.adelgado.popularmovies.data.models.Movie;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -44,7 +40,7 @@ public class HomeFragment extends Fragment {
     moviesList.setAdapter(moviesAdapter);
   }
 
-  public void updateMovies(String action) {
+  /*public void updateMovies(String action) {
     FetchMovies fetchMovies =
         new FetchMovies(getContext(), new FetchMovies.OnFetchMoviesCompleted() {
           @Override public void onFetchMoviesCompleted(ArrayList<Movie> response) {
@@ -57,5 +53,5 @@ public class HomeFragment extends Fragment {
           }
         });
     fetchMovies.execute(action);
-  }
+  }*/
 }

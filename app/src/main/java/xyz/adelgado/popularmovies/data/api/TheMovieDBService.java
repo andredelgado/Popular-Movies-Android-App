@@ -10,7 +10,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.GET;
 import rx.Observable;
 import xyz.adelgado.popularmovies.BuildConfig;
-import xyz.adelgado.popularmovies.data.models.MovieData;
+import xyz.adelgado.popularmovies.data.api.pojo.MovieData;
 
 @Singleton public class TheMovieDBService {
 

@@ -1,4 +1,4 @@
-package xyz.adelgado.popularmovies.data.models;
+package xyz.adelgado.popularmovies.data.api.pojo;
 
 import java.util.ArrayList;
 import java.util.List;
