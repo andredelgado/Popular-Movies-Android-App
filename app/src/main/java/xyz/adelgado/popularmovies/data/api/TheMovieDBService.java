@@ -1,7 +1,6 @@
 package xyz.adelgado.popularmovies.data.api;
 
 import com.google.gson.Gson;
-import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import okhttp3.OkHttpClient;
@@ -32,11 +31,11 @@ import xyz.adelgado.popularmovies.data.models.MovieData;
   }
 
   public interface TheMovieDBWebService {
-    @GET("popular?api_key=" + API_KEY) Observable<List<MovieData>> fetchPopularMovies();
+    @GET("popular?api_key=" + API_KEY) Observable<MovieData> fetchPopularMovies();
     @GET("top_rated?api_key=" + API_KEY) Observable<MovieData> fetchTopRatedMovies();
   }
 
-  public Observable<List<MovieData>> fetchPopularMovies() {
+  public Observable<MovieData> fetchPopularMovies() {
     return theMovieDBWebService.fetchPopularMovies();
   }
 
