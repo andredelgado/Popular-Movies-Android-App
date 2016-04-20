@@ -11,6 +11,7 @@ import android.widget.FrameLayout;
 import butterknife.ButterKnife;
 import xyz.adelgado.popularmovies.MoviesApplication;
 import xyz.adelgado.popularmovies.common.di.ApplicationComponent;
+import xyz.adelgado.popularmovies.common.di.DaggerViewComponent;
 import xyz.adelgado.popularmovies.common.di.ViewComponent;
 import xyz.adelgado.popularmovies.common.di.ViewModule;
 

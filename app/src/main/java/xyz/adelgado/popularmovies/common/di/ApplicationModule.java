@@ -2,7 +2,6 @@ package xyz.adelgado.popularmovies.common.di;
 
 import android.content.Context;
 import android.content.res.Resources;
-import android.location.LocationManager;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -33,9 +32,6 @@ import xyz.adelgado.popularmovies.MoviesApplication;
     return application.getResources();
   }
 
-  @Provides @Singleton public LocationManager provideLocationManager() {
-    return (LocationManager) application.getSystemService(Context.LOCATION_SERVICE);
-  }
 
   @Provides @Singleton public Gson provideGson() {
     return new GsonBuilder()

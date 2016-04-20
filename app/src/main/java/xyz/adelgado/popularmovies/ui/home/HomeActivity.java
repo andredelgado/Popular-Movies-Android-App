@@ -3,7 +3,6 @@ package xyz.adelgado.popularmovies.ui.home;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,8 +11,9 @@ import android.widget.AdapterView;
 import android.widget.Spinner;
 import java.util.ArrayList;
 import xyz.adelgado.popularmovies.R;
+import xyz.adelgado.popularmovies.ui.BaseActivity;
 
-public class HomeActivity extends AppCompatActivity {
+public class HomeActivity extends BaseActivity {
 
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -45,14 +45,18 @@ public class HomeActivity extends AppCompatActivity {
       public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position,
           long id) {
         if (position == 0) {
-          activityFragment.updateMovies(getString(R.string.popular_movies_action_tag));
+          //activityFragment.updateMovies(getString(R.string.popular_movies_action_tag));
         } else if (position == 1) {
-          activityFragment.updateMovies(getString(R.string.top_rated_action_tag));
+          //activityFragment.updateMovies(getString(R.string.top_rated_action_tag));
         }
       }
 
       @Override public void onNothingSelected(AdapterView<?> parentView) {
       }
     });
+  }
+
+  @Override protected int getLayoutRes() {
+    return 0;
   }
 }
