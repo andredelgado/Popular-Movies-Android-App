@@ -26,16 +26,8 @@ public class Movie implements Parcelable {
   private String posterPath;
   private String backdropPath;
 
-  public Movie(String id, String title, String overview, String releaseYear, Double voteAverage,
-      String posterPath, String backdropPath) {
+  public Movie() {
 
-    this.id = id;
-    this.title = title;
-    this.overview = overview;
-    this.releaseYear = releaseYear;
-    this.voteAverage = voteAverage;
-    this.posterPath = posterPath;
-    this.backdropPath = backdropPath;
   }
 
   public Movie(Parcel in) {
@@ -49,6 +41,34 @@ public class Movie implements Parcelable {
     this.voteAverage = Double.parseDouble(data[4]);
     this.posterPath = data[5];
     this.backdropPath = data[6];
+  }
+
+  public void setId(String id) {
+    this.id = id;
+  }
+
+  public void setTitle(String title) {
+    this.title = title;
+  }
+
+  public void setOverview(String overview) {
+    this.overview = overview;
+  }
+
+  public void setReleaseYear(String releaseYear) {
+    this.releaseYear = releaseYear;
+  }
+
+  public void setVoteAverage(Double voteAverage) {
+    this.voteAverage = voteAverage;
+  }
+
+  public void setPosterPath(String posterPath) {
+    this.posterPath = posterPath;
+  }
+
+  public void setBackdropPath(String backdropPath) {
+    this.backdropPath = backdropPath;
   }
 
   public String getId() {
