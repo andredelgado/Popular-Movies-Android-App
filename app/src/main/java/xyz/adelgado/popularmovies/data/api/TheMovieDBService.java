@@ -1,6 +1,8 @@
 package xyz.adelgado.popularmovies.data.api;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import okhttp3.OkHttpClient;
@@ -10,7 +12,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.GET;
 import rx.Observable;
 import xyz.adelgado.popularmovies.BuildConfig;
-import xyz.adelgado.popularmovies.data.api.pojo.MovieData;
+import xyz.adelgado.popularmovies.data.models.Movie;
 
 @Singleton public class TheMovieDBService {
 
@@ -19,27 +21,33 @@ import xyz.adelgado.popularmovies.data.api.pojo.MovieData;
 
   private TheMovieDBWebService theMovieDBWebService;
 
-  @Inject public TheMovieDBService(OkHttpClient client, Gson gson) {
+  @Inject public TheMovieDBService(OkHttpClient client) {
 
-    Retrofit retrofit = new Retrofit.Builder().client(client)
-        .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-        .addConverterFactory(GsonConverterFactory.create(gson))
-        .baseUrl(BASE_URL)
-        .build();
+    Gson gson =
+        new GsonBuilder()
+            .registerTypeAdapter(Movie.class, new MoviesDeserializer<List<Movie>>())
+            .create();
+
+    Retrofit retrofit =
+        new Retrofit.Builder().client(client)
+          .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+          .addConverterFactory(GsonConverterFactory.create(gson))
+          .baseUrl(BASE_URL)
+          .build();
 
     theMovieDBWebService = retrofit.create(TheMovieDBWebService.class);
   }
 
   public interface TheMovieDBWebService {
-    @GET("popular?api_key=" + API_KEY) Observable<MovieData> fetchPopularMovies();
-    @GET("top_rated?api_key=" + API_KEY) Observable<MovieData> fetchTopRatedMovies();
+    @GET("popular?api_key=" + API_KEY) Observable<List<Movie>> fetchPopularMovies();
+    @GET("top_rated?api_key=" + API_KEY) Observable<List<Movie>> fetchTopRatedMovies();
   }
 
-  public Observable<MovieData> fetchPopularMovies() {
+  public Observable<List<Movie>> fetchPopularMovies() {
     return theMovieDBWebService.fetchPopularMovies();
   }
 
-  public Observable<MovieData> fetchTopRatedMovies() {
+  public Observable<List<Movie>> fetchTopRatedMovies() {
     return theMovieDBWebService.fetchTopRatedMovies();
   }
 }
